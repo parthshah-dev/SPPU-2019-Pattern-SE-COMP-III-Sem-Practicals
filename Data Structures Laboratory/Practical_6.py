@@ -1,24 +1,17 @@
-def quick_sort(arr, low, high):
-    if low < high:
-        # Get the partition index
-        pi = partition(arr, low, high)
-        
-        # Recursively sort the elements before and after partition
-        quick_sort(arr, low, pi - 1)
-        quick_sort(arr, pi + 1, high)
-        
-def partition(arr, low, high):
-    pivot = arr[high]  # Choose the last element as pivot
-    i = low - 1  # Index of smaller element
-    
-    for j in range(low, high):
-        if arr[j] <= pivot:
-            i += 1
-            arr[i], arr[j] = arr[j], arr[i]  # Swap elements
-            
-    # Swap the pivot element with the element at index i + 1
-    arr[i + 1], arr[high] = arr[high], arr[i + 1]
-    return i + 1  # Return the partition index
+def quick_sort(lst, start, end):
+    if(start >= end): #if reaches single element or start less than end
+        return
+    pivot = partition(lst, start, end)
+    quick_sort(lst, start, pivot - 1) #left subarray
+    quick_sort(lst, pivot + 1, end) #right subarray
+
+def partition(lst, start, end):
+    pos = start
+    for i in range(start, end + 1): 
+        if(lst[i] <= lst[end]):
+            lst[i], lst[pos] = lst[pos], lst[i]
+            pos = pos + 1
+    return pos - 1 #returning position of pivot
 
 def top_five(arr):
     n = len(arr)
