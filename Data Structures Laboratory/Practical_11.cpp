@@ -12,53 +12,48 @@ struct Queue{
     int front, rear;
 }q;
 
-void initialize()
-{
-    q.front = -1; //initialize front and rear -1 for empty queue
-    q.rear = -1;
-}
-
 void addJob(){
+    string jobname;
+    cout << "Enter Job Name: ";
+    cin >> jobname;
     if(q.rear==MAX-1){
-        cout << "\nError! Queue is already full";
+        cout << "Error! Queue is already full" << endl;
         return;
     }
-    string name;
-    cout << "Enter Job Name: ";
-    cin >> name;
-    q.rear++; //increment rear to add job
-    q.job[q.rear] = name;
-
-    if(q.front==-1){
+    else if(q.front == -1){
         q.front = 0;
+        q.rear = 0;
     }
-    cout << "\nJob '" << name << "' added in the queue";
+    else{
+       q.rear++; 
+    }
+    q.job[q.rear] = jobname;
+    cout << "\nJob '" << jobname << "' added in the queue" << endl;
 }
 
-void delJob(){
+void deleteJob(){
     if(q.front == -1 || q.rear == -1){
-        cout << "\nQueue is empty. No jobs to delete.";
+        cout << "\nQueue is empty. No jobs to delete." << endl;
         return;
     }
-    cout << "\nJob '"<< q.job[q.front] << "' deleted from the queue";
-    q.front++;
-
-     // Reset the queue if it becomes empty after deletion
-    if (q.front > q.rear) {
+    cout << "\nJob '"<< q.job[q.front] << "' deleted from the queue" << endl;
+    
+    if(q.front == q.rear){ //only one job is there
         q.front = q.rear = -1;
     }
+    else{
+        q.front++;
+    }
 }
 
-void display(){
-
+void displayJobs(){
     if(q.front == -1 || q.rear == -1){
-        cout << "\nQueue is empty. No jobs to display.";
+        cout << "Queue is empty. No jobs to display." << endl;
         return;
     }
-    
-    cout << "\nJobs in the queue: "; 
+    cout << "\nJobs present in the queue: "; 
     for(int i=q.front; i<=q.rear; i++){
-        cout << "'" << q.job[i] << "'" << " ";
+        cout << q.job[i] << ", ";  
     }
     cout << endl;
 }
@@ -66,7 +61,7 @@ void display(){
 int main(){
     int choice;
 
-    initialize();
+    q.front = q.rear = -1; //initial position of both the pointers
 
     do {
         cout << "\n\n======= Menu =======\n";
@@ -83,10 +78,10 @@ int main(){
                 addJob(); // calling add() function
                 break;
             case 2:
-                delJob(); // calling delete() function
+                deleteJob(); // calling delete() function
                 break;
             case 3:
-                display(); // calling display() function
+                displayJobs(); // calling display() function
                 break;
             case 4:
                 cout << "Thank you for using the program!" << endl;
