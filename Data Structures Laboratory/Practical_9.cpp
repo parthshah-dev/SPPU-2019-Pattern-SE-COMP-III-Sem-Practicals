@@ -13,9 +13,7 @@ using namespace std;
 struct Stack{
     char data[50];
     int top;
-};
-
-struct Stack s;
+}s;
 
 //Function to push characters onto the stack
 void create(string str){
