@@ -1,3 +1,5 @@
+/* Implement Pizza parlour order system for first come first serve basis using circular queue. The order once placed cannot be cancelled */
+
 #include <iostream>
 #define MAX 5 // Maximum number of orders
 using namespace std;
