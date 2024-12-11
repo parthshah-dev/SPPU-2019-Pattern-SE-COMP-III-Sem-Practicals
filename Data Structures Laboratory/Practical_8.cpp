@@ -52,10 +52,7 @@ void display_seats(){
         while (temp!=NULL)
         {
             if(!temp->isBooked){
-                cout << "Seat " << temp->seat << " is available\n";
-            }
-            else{
-                cout << "Seat " << temp->seat << " is booked\n";
+                cout << "Seat Number " << temp->seat << " is available\n";
             }
             temp = temp->next;
         }
