@@ -1,3 +1,5 @@
+#Program to sort floating point numbers in ascending order using Quick Sort
+
 def quick_sort(lst, start, end):
     if(start >= end): #if reaches single element or start less than end
         return
