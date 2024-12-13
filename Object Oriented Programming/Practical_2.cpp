@@ -94,6 +94,7 @@ public:
     // Inline function to update telephone number
     inline void updatePhoneNo(long long phone) {
         this->telephoneNumber = phone;
+        cout << "Phone number updated!" << endl;
     }
 };
 
