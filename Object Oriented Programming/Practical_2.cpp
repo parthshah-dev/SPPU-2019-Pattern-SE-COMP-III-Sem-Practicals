@@ -2,7 +2,6 @@
 Experiment Number 2 : Develop a program in C++ to create a database of
 student’s information system containing the following information: Name, Roll number, Class, Division, Date of Birth, Blood group, Contactaddress, Telephone number, Driving license no. and other. Construct the database with suitable member functions. Make use of constructor, default constructor, copy constructor, destructor, static member functions, friend class, this pointer, inline code and dynamic memory allocation operators-new and delete as well as exception handling.
 */
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -88,6 +87,17 @@ public:
         return studentCount;
     }
 
+    // Getter functions for private members
+    string getName() const { return name; }
+    int getRollNumber() const { return rollNumber; }
+    string getStudentClass() const { return studentClass; }
+    string getDivision() const { return division; }
+    string getDateOfBirth() const { return dateOfBirth; }
+    string getBloodGroup() const { return bloodGroup; }
+    string getContactAddress() const { return contactAddress; }
+    long long getTelephoneNumber() const { return telephoneNumber; }
+    string getDrivingLicenseNo() const { return drivingLicenseNo; }
+
     // Friend function to display private details
     friend void displayDetails(const Student& s);
 
@@ -100,21 +110,21 @@ public:
 
 // Definition of friend function to display student details
 void displayDetails(const Student& s) {
-    cout << "Student Name: " << s.name << endl;
-    cout << "Roll Number: " << s.rollNumber << endl;
-    cout << "Class: " << s.studentClass << endl;
-    cout << "Division: " << s.division << endl;
-    cout << "Date of Birth: " << s.dateOfBirth << endl;
-    cout << "Blood Group: " << s.bloodGroup << endl;
-    cout << "Contact Address: " << s.contactAddress << endl;
-    cout << "Telephone Number: " << s.telephoneNumber << endl;
-    cout << "Driving License No.: " << s.drivingLicenseNo << endl;
+    cout << "Student Name: " << s.getName() << endl;
+    cout << "Roll Number: " << s.getRollNumber() << endl;
+    cout << "Class: " << s.getStudentClass() << endl;
+    cout << "Division: " << s.getDivision() << endl;
+    cout << "Date of Birth: " << s.getDateOfBirth() << endl;
+    cout << "Blood Group: " << s.getBloodGroup() << endl;
+    cout << "Contact Address: " << s.getContactAddress() << endl;
+    cout << "Telephone Number: " << s.getTelephoneNumber() << endl;
+    cout << "Driving License No.: " << s.getDrivingLicenseNo() << endl;
 }
 
 // Function to show student details using friend class
 void Database::showStudentDetails(const Student& s) {
     cout << "Accessing private data of student from Database class." << endl;
-    cout << "Name: " << s.name << ", Roll Number: " << s.rollNumber << endl;
+    cout << "Name: " << s.getName() << ", Roll Number: " << s.getRollNumber() << endl;
 }
 
 // Initialize the static member variable
