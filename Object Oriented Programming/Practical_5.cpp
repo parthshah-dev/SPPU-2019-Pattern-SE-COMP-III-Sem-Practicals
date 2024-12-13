@@ -2,76 +2,78 @@
 Write a function template for selection sort that inputs, sorts and outputs an integer array and a float array.
 */
 
-#include<iostream>
-#define size 5
+#include <iostream>
 using namespace std;
+
 int n;
 
-template<typename T>
-void selecSort(T arr[]){
-    int i, j, min;
-    T temp;
-    for(i=0;i<n-1; i++){
-        min = i;
-        for(j=i+1; j<n; j++){
-            if(arr[j]<arr[min]){
-                min = j;
+template <typename T>
+void selectionSort(T array[]) {
+    for (int i = 0; i < n - 1; i++) {
+        int index = i;
+        for (int j = i + 1; j < n; j++) {
+            if (array[j] < array[index]) {
+                index = j;
             }
         }
-        temp = arr[i];
-        arr[i] = arr[min];
-        arr[min] = temp;
-    }
-    //printing sorted array
-    cout << "Sorted Array: ";
-    for(i=0; i<n; i++){
-        cout << arr[i] << " ";
+        swap(array[index], array[i]);
     }
 }
-int main(){
-    int int_array[size];
-    float float_array[size];
-    int ch;
-    do{
-        cout<<"\n* * * * * SELECTION SORT SYSTEM * * * * *";
-		cout<<"\n--------------------MENU-----------------------";
-		cout<<"\n1. Integer Values";
-		cout<<"\n2. Float Values";
-		cout<<"\n3. Exit";
-		cout<<"\n\nEnter your choice : ";
-		cin>>ch;
 
-        switch (ch)
-        {
+int main() {
+    int ch;
+    float floatarr[100];
+    int intarr[100];
+
+    do {
+        cout << "****** SELECTION SORT ******" << endl;
+        cout << "1. Integer Array" << endl;
+        cout << "2. Float Array" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> ch;
+
+        switch (ch) {
             case 1:
-                cout << "Enter total number of integer elements: ";
+                cout << "Enter number of elements (Max 100): ";
                 cin >> n;
-                for(int i=0; i<n; i++){
-                    cout << "Enter "<< i+1 << " element: ";
-                    cin >> int_array[i];
+                cout << "Enter elements:\n";
+                for (int i = 0; i < n; i++) {
+                    cout << "Element " << i + 1 << ": ";
+                    cin >> intarr[i];
                 }
-                selecSort(int_array);
+                selectionSort(intarr);
+                cout << "Sorted Integer Array:\n";
+                for (int i = 0; i < n; i++) {
+                    cout << intarr[i] << " ";
+                }
+                cout << endl;
                 break;
 
             case 2:
-                cout << "Enter total number of float elements: ";
+                cout << "Enter number of elements (Max 100): ";
                 cin >> n;
-                for(int i=0; i<n; i++){
-                    cout << "Enter "<< i+1 << " element: ";
-                    cin >> float_array[i];
+                cout << "Enter elements:\n";
+                for (int i = 0; i < n; i++) {
+                    cout << "Element " << i + 1 << ": ";
+                    cin >> floatarr[i];
                 }
-                selecSort(float_array);
+                selectionSort(floatarr);
+                cout << "Sorted Float Array:\n";
+                for (int i = 0; i < n; i++) {
+                    cout << floatarr[i] << " ";
+                }
+                cout << endl;
                 break;
 
             case 3:
-                cout << "Thank you for using the program!";
-                exit(0);
+                cout << "Thank you for using the program!" << endl;
+                break;
 
             default:
-                cout << "Invalid choice!";
-                break;
+                cout << "Invalid Choice..." << endl;
         }
-    }while (ch!=3);
-    
+    } while (ch != 3);
+
     return 0;
 }
