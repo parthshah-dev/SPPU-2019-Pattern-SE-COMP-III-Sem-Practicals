@@ -6,122 +6,92 @@ Implement a class Complex which represents the Complex Number data type. Impleme
 4.	Overload operators << and >> to print and read Complex Numbers
 */
 
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Complex{
-    public:
-        double real;
-        double imag;
+class Complex {
+    float real, imag;
 
-    public: 
-        Complex(){
-            real = 0;
-            imag = 0;
-        }
-    //overloading + operator
-    Complex operator + (Complex obj){
+public:
+    // Constructor with default parameters
+    Complex(float r = 0, float i = 0){
+        real = r;
+        imag = i;
+    }
+
+    // Overloaded addition operator
+    Complex operator+(const Complex& obj) {
         Complex result;
         result.real = real + obj.real;
         result.imag = imag + obj.imag;
         return result;
     }
 
-    //overloading * operator
-    Complex operator * (Complex obj){
+    // Overloaded multiplication operator
+    Complex operator*(const Complex& obj) {
         Complex result;
         result.real = (real * obj.real) - (imag * obj.imag);
         result.imag = (real * obj.imag) + (imag * obj.real);
         return result;
     }
 
-    friend istream & operator >> (istream &, Complex &); // Input 
-    friend ostream & operator << (ostream &, const Complex &); // Output
+    // Friend function for input
+    friend istream& operator>>(istream& in, Complex& c) {
+        cout << "Enter real part: ";
+        in >> c.real;
+        cout << "Enter imaginary part: ";
+        in >> c.imag;
+        return in;
+    }
+
+    // Friend function for output
+    friend ostream& operator<<(ostream& out, const Complex& c) {
+        out << c.real << " + " << c.imag << "i";
+        return out;
+    }
 };
-//overloading >> operator
-istream & operator >> (istream &, Complex & i){
-    cin >> i.real >> i.imag;
-    return cin;
-}
 
-//overloading << operator
-ostream & operator << (ostream &, Complex & o){
-    cout << o.real << "+" << o.imag << "i" << endl;
-    return cout;
-}
+int main() {
+    Complex c1, c2;
 
-int main(){
-    Complex c1, c2, c3, c4;
-    int flag = 1;
-
-    cout << "Enter real and imaginary part of complex number 1: ";
+    // Input two complex numbers
+    cout << "Enter complex number 1:\n";
     cin >> c1;
-    cout << "\nEnter real and imaginary part of complex number 2: ";
+    cout << "\nEnter complex number 2:\n";
     cin >> c2;
 
-    while(flag==1){
-        cout << "Complex number 1: " << c1 << endl;
-        cout << "Complex number 2: " << c2 << endl;
-        cout << "***********MENU***********" << endl;
+    cout << "\nComplex number 1: " << c1 << endl;
+    cout << "Complex number 2: " << c2 << endl;
+
+    int ch;
+    do {
+        cout << "\n*********** MENU ***********" << endl;
         cout << "1. Addition" << endl;
         cout << "2. Multiplication" << endl;
-        cout << "3. Exit\n" << endl;
-        int ch;
-        cout<< "Enter choice (1 to 3): ";
+        cout << "3. Exit" << endl;
+        cout << "Enter choice (1 to 3): ";
         cin >> ch;
 
-        switch (ch)
-        {
-            char c;
+        Complex c3; // For storing results of operations
+        switch (ch) {
             case 1:
-                c3 = c1+c2;
-                cout << "Addition of Complex number 1 and 2 is: " << c3 << endl;
-                cout << "Do you want to continue?(y/n): ";
-                cin >> c;
-                if(c=='y' || c=='y'){
-                    flag = 1;
-                }
-                else{
-                    flag=0;
-                    cout << "Thank you for using the program!" << endl;
-                    break;
-                }
+                c3 = c1 + c2;
+                cout << "Result of addition: " << c3 << endl;
                 break;
 
             case 2:
-                c3 = c1*c2;
-                cout << "Multiplication of Complex number 1 and 2 is: " << c3 << endl;
-                cout << "Do you want to continue?(y/n): ";
-                cin >> c;
-                if(c=='y' || c=='y'){
-                    flag = 1;
-                }
-                else{
-                    flag=0;
-                    cout << "Thank you for using the program!" << endl;
-                    break;
-                }
+                c3 = c1 * c2;
+                cout << "Result of multiplication: " << c3 << endl;
                 break;
-                
+
             case 3:
-                flag = 0;
                 cout << "Thank you for using the program!" << endl;
                 break;
-            
+
             default:
-                cout << "Invalid choice" << endl;
-                cout << "Do you want to continue?(y/n): ";
-                cin >> c;
-                if(c=='y' || c=='y'){
-                    flag = 1;
-                }
-                else{
-                    flag=0;
-                    cout << "Thank you for using the program!" << endl;
-                    break;
-                }
-                break;
+                cout << "Invalid Choice! Please try again." << endl;
         }
-    }
+    } while (ch != 3);
+
     return 0;
 }
