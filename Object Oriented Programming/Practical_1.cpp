@@ -30,8 +30,8 @@ class Complex{
     //overloading * operator
     Complex operator * (Complex obj){
         Complex result;
-        result.real = real * obj.real;
-        result.imag = imag * obj.imag;
+        result.real = (real * obj.real) - (imag * obj.imag);
+        result.imag = (real * obj.imag) + (imag * obj.real);
         return result;
     }
 
