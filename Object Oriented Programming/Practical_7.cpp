@@ -55,7 +55,7 @@ int main() {
             }
 
             case 3:
-                cout << "Thank you for using the program! Goodbye!" << endl;
+                cout << "Thank you for using the program!" << endl;
                 break;
 
             default:
