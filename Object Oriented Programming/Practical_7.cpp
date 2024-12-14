@@ -2,38 +2,71 @@
 Write a C++ program to store the name of the state and its population in the map associative container. When the user inputs the name of the state, the program should display its population
 */
 
-#include<iostream>
-#include<map>
-#include <algorithm> // for transform
-#include <cctype>    // for tolower
-#include<string>
+#include <iostream>
+#include <map>
+#include <algorithm>
+#include <string>
 using namespace std;
 
-int main(){
-    map<string, int> statePopulation;
+int main() {
+    map<string, int> mymap;
+    int ch;
+    string sname;
+    long long spopu;
 
-    // Sample data
-    statePopulation["maharashtra"] = 120000000;
-    statePopulation["punjab"] = 50000000;
-    statePopulation["gujarat"] = 21538187;
-    statePopulation["goa"] = 300000;
-    statePopulation["kerala"] = 30000000;
+    do {
+        cout << "\n======= MENU =======" << endl;
+        cout << "1. Insert Record" << endl;
+        cout << "2. Search Record" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> ch;
+        cin.ignore(); // To clear newline from the buffer
 
-    string srch;
-    cout << "Enter state name: ";
-    getline(cin, srch); 
+        switch (ch) {
+            case 1: {
+                cout << "Enter state name: ";
+                getline(cin, sname);
+                cout << "Enter state population: ";
+                cin >> spopu;
+                cin.ignore();
+                // Convert state name to lowercase
+                transform(sname.begin(), sname.end(), sname.begin(), ::tolower);
+                mymap[sname] = spopu;
+                cout << "\nRecord inserted successfully!" << endl;
+                break;
+            }
 
-    // Convert the entire string to lowercase to avoid naming confusion
-    transform(srch.begin(), srch.end(), srch.begin(), ::tolower);
+            case 2: {
+                string srch;
+                cout << "Enter state name to find population: ";
+                getline(cin, srch);
+                // Convert search term to lowercase
+                transform(srch.begin(), srch.end(), srch.begin(), ::tolower);
+                
+                // Search for the state in the map
+                auto it = mymap.find(srch);
+                if (it != mymap.end()) {
+                    cout << "Population of " << srch << " is: " << it->second << endl;
+                } else {
+                    cout << srch << " is not in the record. Please insert it first!" << endl;
+                }
+                break;
+            }
 
-    //create a iterator and find the state name in the map
-    auto it = statePopulation.find(srch);
-    if(it!=statePopulation.end()){
-        cout << "Population of " << srch << ": " << it->second << endl;
-    }
-    else{
-        cout << "State not found in the database! " << endl;
-    }
+            case 3:
+                cout << "Thank you for using the program! Goodbye!" << endl;
+                break;
+
+            default:
+                cout << "Invalid choice! Please try again." << endl;
+        }
+
+    } while (ch != 3);
+
+    return 0;
+}
+
 
     return 0;
 }
