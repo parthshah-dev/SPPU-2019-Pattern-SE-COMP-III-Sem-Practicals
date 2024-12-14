@@ -38,45 +38,52 @@ void searchByName(const vector<PersonalRecord>& records, const string& name) {
     }
 }
 
-int main()
-{
+int main(){
+    string rname, rdob, rphno;
+    int n;
     vector<PersonalRecord> record;
-    record.emplace_back("Raj", "01-09-04", "9549585764");
-    record.emplace_back("Amit", "13-10-05", "9549585764");
-    record.emplace_back("Parth", "14-07-05", "9549585764");
-
+    cout << "How many records do you want to insert?: ";
+    cin >> n;
+    for(int i=0; i<n; i++){
+        cout << "Enter details of record " << i+1 << endl;
+        cout << "Enter name: ";
+        cin >> rname;
+        cout << "\nEnter Date of Birth (dd/mm/yyyy): ";
+        cin >> rdob;
+        cout << "\nEnter Phone Number: ";
+        cin >> rphno;
+        cout << endl;
+        record.emplace_back(rname, rdob, rphno);
+    }
+    
     string name;
     int ch;
-    do
-    {
-        cout << "\n====== Menu ======\n1. Sort the list\n2. Search by name\n3. Display\nPress any other key to exit\n";
+    
+    do{
+        cout << "\n====== Menu ======\n1. Sort the list\n2. Search by name\n3. Display\n4. Exit\n";
         cout << "Enter your choice: ";
         cin >> ch;
+        cout << endl;
         
-        switch (ch) {
-            case 1:
-                sort(record.begin(), record.end(), Compare);
-                cout << "List sorted by name.\n";
-                break;
-
-            case 2:
-                cout << "Enter the name to search: ";
-                cin >> name;
-                searchByName(record, name);
-                break;
-
-            case 3:
-                cout << "Displaying all records:\n";
-                for (const auto& r : record) {
-                    cout << "Name: " << r.name << ", DOB: " << r.dob << ", Phone Number: " << r.phno << endl;
-                }
-                break;
-
-            default:
-                cout << "Thank you for using the program!\n";
-                exit(0);
+        switch(ch){
+            case 1: sort(record.begin(), record.end(), Compare);
+                    cout << "List sorted by name!" << endl;
+                    break;
+            case 2: cout << "Enter name to search: ";
+                    cin >> name;
+                    searchByName(record, name);
+                    break;
+            case 3: for(auto& r : record){
+                        cout << "Name: " << r.name << endl;
+                        cout << "DOB: " << r.dob << endl;
+                        cout << "Phone Number: " << r.phno << endl;
+                        cout << endl;
+                    }
+            case 4: cout << "Thank you!" << endl;
+                    break;
+            default: cout << "Invalid choice!" << endl;
+                    break;
         }
-    } while(true);
-    
+    }while(ch!=4);
     return 0;
 }
