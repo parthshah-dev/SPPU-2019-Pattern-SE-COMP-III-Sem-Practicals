@@ -18,10 +18,11 @@ int main() {
         cout << "\n======= MENU =======" << endl;
         cout << "1. Insert Record" << endl;
         cout << "2. Search Record" << endl;
-        cout << "3. Exit" << endl;
+        cout << "3. Display All Records" << endl;
+        cout << "4. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> ch;
-        cin.ignore(); // To clear newline from the buffer
+        cin.ignore(); 
 
         switch (ch) {
             case 1: {
@@ -30,7 +31,7 @@ int main() {
                 cout << "Enter state population: ";
                 cin >> spopu;
                 cin.ignore();
-                // Convert state name to lowercase
+     
                 transform(sname.begin(), sname.end(), sname.begin(), ::tolower);
                 mymap[sname] = spopu;
                 cout << "\nRecord inserted successfully!" << endl;
@@ -41,10 +42,10 @@ int main() {
                 string srch;
                 cout << "Enter state name to find population: ";
                 getline(cin, srch);
-                // Convert search term to lowercase
+    
                 transform(srch.begin(), srch.end(), srch.begin(), ::tolower);
                 
-                // Search for the state in the map
+        
                 auto it = mymap.find(srch);
                 if (it != mymap.end()) {
                     cout << "Population of " << srch << " is: " << it->second << endl;
@@ -54,7 +55,16 @@ int main() {
                 break;
             }
 
-            case 3:
+            case 3: cout << "----------- Displaying all records -----------" 
+                    << endl;
+                    for(auto it : mymap){
+                        cout << "Population of " << it.first << " is: " << it.second << endl;
+                    }
+                    break;
+                    cout << "----------------------------------------------" 
+                    << endl;
+        
+            case 4:
                 cout << "Thank you for using the program!" << endl;
                 break;
 
@@ -62,7 +72,7 @@ int main() {
                 cout << "Invalid choice! Please try again." << endl;
         }
 
-    } while (ch != 3);
+    } while (ch != 4);
 
     return 0;
 }
