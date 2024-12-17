@@ -79,11 +79,11 @@ int main(){
                         cout << "Phone Number: " << r.phno << endl;
                         cout << endl;
                     }
-            case 4: cout << "Thank you!" << endl;
+            case 4: cout << "Thank you for using the program!" << endl;
                     break;
             default: cout << "Invalid choice!" << endl;
                     break;
         }
-    }while(ch!=4);
+    } while(ch!=4);
     return 0;
 }
