@@ -3,7 +3,7 @@ Imagine a publishing company that handles marketing for both book and audiocasse
 */
 
 #include<iostream>
-#include<string.h>
+#include<string>
 using namespace std;
 
 class Publication{
@@ -20,7 +20,6 @@ class Publication{
             cin >> price;
         }
         void pubDisp(){
-            cout << "----------Publication Information----------" << endl;
             cout << "Publication Title: " << title << endl;
             cout << "Publication Price: " << price << endl;
         }
@@ -46,9 +45,10 @@ class Book : public Publication{
             }
         }
         void dispBook(){
-            cout << "----------Book Information----------" << endl;
+            cout << "---------- Book Information ----------" << endl;
             pubDisp();
             cout << "Page count of Book: " << pageCount << endl; 
+            cout << "--------------------------------------" << endl;
         }
 };
 class Tape : public Publication{
@@ -71,19 +71,19 @@ class Tape : public Publication{
             }
         }
         void dispTape(){
-            cout << "----------Tape Information----------" << endl;
+            cout << "---------- Tape Information ----------" << endl;
             pubDisp();
-            cout << "Playing Time of Tape: " << playTime << endl; 
+            cout << "Playing Time of Tape: " << playTime << endl;
+            cout << "--------------------------------------" << endl; 
         }
 };
 int main(){
     Book b_obj[10];
     Tape t_obj[10];
-    int b_count, t_count, ch;
+    int b_count = 1, t_count = 1, ch;
 
     do{
-        cout << "***********PUBLICATION DATABASE***********" << endl;
-        cout << "----------MENU----------" << endl;
+        cout << "*********** PUBLICATION DATABASE ***********" << endl;
         cout << "1. Add Book Information" << endl;
         cout << "2. Add Tape Information" << endl;
         cout << "3. Display Book Information" << endl;
