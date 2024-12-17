@@ -20,7 +20,7 @@ public:
     }
 
     // Overloaded addition operator
-    Complex operator+(const Complex& obj) {
+    Complex operator + (const Complex& obj) {
         Complex result;
         result.real = real + obj.real;
         result.imag = imag + obj.imag;
@@ -28,7 +28,7 @@ public:
     }
 
     // Overloaded multiplication operator
-    Complex operator*(const Complex& obj) {
+    Complex operator * (const Complex& obj) {
         Complex result;
         result.real = (real * obj.real) - (imag * obj.imag);
         result.imag = (real * obj.imag) + (imag * obj.real);
@@ -36,7 +36,7 @@ public:
     }
 
     // Friend function for input
-    friend istream& operator>>(istream& in, Complex& c) {
+    friend istream& operator >> (istream& in, Complex& c) {
         cout << "Enter real part: ";
         in >> c.real;
         cout << "Enter imaginary part: ";
@@ -45,7 +45,7 @@ public:
     }
 
     // Friend function for output
-    friend ostream& operator<<(ostream& out, const Complex& c) {
+    friend ostream& operator << (ostream& out, const Complex& c) {
         out << c.real << " + " << c.imag << "i";
         return out;
     }
@@ -55,9 +55,9 @@ int main() {
     Complex c1, c2;
 
     // Input two complex numbers
-    cout << "Enter complex number 1:\n";
+    cout << "For complex number 1:\n";
     cin >> c1;
-    cout << "\nEnter complex number 2:\n";
+    cout << "\nFor complex number 2:\n";
     cin >> c2;
 
     cout << "\nComplex number 1: " << c1 << endl;
